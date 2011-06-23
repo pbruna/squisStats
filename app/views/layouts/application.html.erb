@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SquidStats</title>
+  <%= stylesheet_link_tag    "application" %>
+
+  <%= javascript_include_tag "application" %>
+  <%= javascript_include_tag "highcharts" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<div class="container">
+	<div id="navbar" class="span-23 box last">
+		<%= render "shared/navbar" %>
+	</div>
+	<div id="main" class="span-24 last">
+		<%= yield %>
+	</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,87 @@
+		<%= "options.chart.events.load = function(){
+			var series = this.series[0];
+			var chart = this;
+			var datos = {
+				'series' : [],
+				'categories' : []
+			};
+			setInterval(function() {
+				$.getJSON('/', function(data){
+					datos['series'] = [];
+					datos['categories'] = [];
+					$.each(data['data'][0]['data'], function(key, val){
+						datos['series'].push({name: val['name'], y: val['y'], color: val['color']});
+						datos['categories'].push(val['name']);
+					});
+				});
+				series.setData(datos['series']);
+				chart.xAxis[0].setCategories(datos['categories'], true);
+			},5000);
+		}"%>
+		
+		setInterval(function() {
+			$.getJSON('/', function(data){
+				$.each(data['data'], function(key, val){
+					y = val['data']
+					x = val['name']
+				});
+			});
+			series.addPoint([x, y], true, true);
+			
+		},5000);
+		
+		 query = 'domain'
+	    last_requests = Request.lasts(query, 5, 5)
+	    categories = last_requests.map {|r| r[query]}
+	    @other = LazyHighCharts::HighChart.new('column') do |f|
+	      colors = high_chart_colors()
+	      f.series( :data => last_requests.each_with_index.map {|r,c| {:name => r[query],
+	                                                                   :y => r['sum'], :color => colors[c]}},
+
+	                )
+
+	      f.options[:chart][:defaultSeriesType] = "column"
+	      f.options[:legend][:style] = {}
+	      f.options[:xAxis] = {:categories => categories }
+	      f.options[:title] = ""
+	      f.options[:chart][:events] = {}
+	    end
+	
+	
+	
+			<%= high_chart("network", @network) do |c| %>
+				<%= "options.legend.layout = 'horizontal' " %>
+				<%= "options.legend.enabled = false "%>
+				<%= "options.chart.height = 250" %>
+				<%= "options.tooltip.formatter = function() {return this.x +': '+ this.y}" %>
+				<%= "options.yAxis.title.text = 'Bytes' "%>
+				<%= "options.xAxis.tickPixelInterval = 150 "%>
+				<%= "options.chart.events.load = function(){
+					var series = this.series[0];
+					setInterval(function() {
+						$.getJSON('/dashboards/live_network', function(result){
+							$.each(result['data'], function(key, val){
+								y = val['data']['y'];
+								x = val['data']['x'];
+							});
+						});
+						series.addPoint([x, y], true, false);
+					},5000);
+				}"%>
+
+			<% end %>
+			
+			
+			
+			
+			
+			
+						setInterval(function() {
+							$.getJSON('/dashboards/live_network', function(result){
+								$.each(result['data'], function(key, val){
+									y = val['data'][0]['y'];
+									x = (new Date(val['data'][0]['x'] * 1000)).getTime();
+								});
+							});
+							series.addPoint([x, y], true, false);
+						}, 5000);

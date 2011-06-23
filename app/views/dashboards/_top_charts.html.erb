@@ -1,0 +1,11 @@
+<table>
+	<% elements.each do |e| %>
+		<tr class="<%= cycle("alt", "clear") %>">
+			<td class="link"><%= link_to "#{e.name}", send("#{type}_path", e) %></td>
+			<td class="graph"><%= bar_size(elements[0].requests, e.requests) %></td>
+			<td class="right value">
+				<strong><%= number_with_delimiter(e.requests, :delimiter => ".")%></strong>
+			</td>
+		</tr>
+	<% end %>
+</table>

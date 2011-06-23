@@ -1,0 +1,78 @@
+/*
+ * This is a manifest file that'll automatically include all the stylesheets available in this directory
+ * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
+ * the top of the compiled file, but it's generally better to create a new file per style scope.
+ *= require_self
+*/
+
+@import "blueprint/screen.css";
+@import "blueprint/ie.css";
+
+tbody tr:nth-child(even) td, tbody tr.even td {
+	background: #FFF;
+}
+
+html, body {
+  background-color: #EEE;
+  height: 100%;
+}
+
+h3 {
+	font: normal normal bold 22px/normal 'trebuchet ms', arial, helvetica, verdana, sans-serif;
+}
+
+h4 {
+	font: normal normal bold 18px/normal 'trebuchet ms', arial, helvetica, verdana, sans-serif;
+}
+
+.right {
+	text-align: right;
+}
+
+.chart {
+	background-color: #FFF;
+
+	padding: 10px 10px 10px 10px;
+	margin-bottom: 20px;
+	border-style: solid;
+	border-color: #E5E5E5;
+	border-width: 2px;
+	
+
+		td {
+			padding: 7px 7px 7px 7px;
+		}
+		
+		.graph {
+			border-left: 1px dotted #DDE;
+			border-right: 1px dotted #DDE;
+			width: 100px;
+		}
+		
+		.alt {
+			background-color: #EEF;
+			padding-top: 10px 10px 10px 10px;
+			}
+		.normal {
+			background-color: white;
+		}
+		
+		
+		h4 {
+			border-bottom: 1px dotted #CCC;
+			margin-bottom: 10px;
+			padding-bottom: 2px;
+		}
+		
+		.chart_tabs {
+			float: right;
+			font-size: 11px;
+			word-spacing: 5px;
+		}
+		
+}
+
+.right_column {
+	margin-left: 15px;
+	margin-right: -40px;
+}

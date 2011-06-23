@@ -1,0 +1,29 @@
+<div id="network_graph" class="span-23 last chart" >
+	<h3>Live Network Traffic</h3>
+		<%= render "live_network" %>
+		<div id="network">
+		</div>
+	<hr/>
+	<br/>
+	<br/>
+</div>
+
+	<% chart_divs = {
+			:domains => "Top Domains",
+			:hosts => "Top Hosts",
+			:contents => "Top Content",
+			:users => "Top Users"
+		}
+	%>
+	
+	<% chart_divs.each do |k,v| %>
+		<div id="top_<%= k %>" class="span-11 chart <%= cycle(" ","last right_column", :name => "charts") %>">
+			<div class="chart_tabs">
+				Requests
+				<%= link_to "Bytes" %>
+				<%= link_to "Hits" %>
+			</div>
+			<h4><%= v %></h4>
+			<%= render :partial => "top_charts", :locals => {:elements => instance_variable_get("@top_#{k}"), :type => "#{k.to_s}".singularize } %>
+		</div>
+	<% end %>
